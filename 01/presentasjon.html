@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Hva er nytt i ES6</title>
+    <link href='../remark/inconsolata.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../remark/remark-bekk.css">
+    <style type="text/css" media="screen">
+      .loud {font-size:2em;}
+
+      blockquote, .loud {font-size:2em;}
+      blockquote cite, .loud small {font-size:.7em;color:#FD5158;}
+      .remark-slide .overlay {
+        padding: 1em 0;
+        text-align: center;
+        font-family: Inconsolata;
+      }
+      .remark-slide .overlay h1 > span {background:transparent !important;}
+      .remark-slide .overlay h1:before {border-top:none !important;}
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: fullscreen
+
+![code](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/code.jpeg)
+
+<div class="overlay loud" style="top: 55%">
+<p>
+    Kurs i frontendutvikling
+    <small style="display:block;">En introduksjon til HTML, CSS og JavaScript</small>
+</p>
+</div>
+
+???
+
+Hei og velkommen!
+Vi skal gjennom HTML, CSS og JS på åtte timer.
+Da vil det nødvendigvis gå fort, men forhåpentligvis har vi laget et opplegg hvor d går an å henge med likevel.
+Kurset er delt inn i korte presentasjonsbiter for hvert tema hvor dere gjør praktiske oppgaver etterpå.
+Det er lagt opp til at man ikke kan noe fra før.
+
+---
+
+class: middle center
+
+
+![Nettleserstatistikk](resources/browsers-all.jpg)
+
+
+.source[http://tech.finn.no/2015/06/25/browser-statistics-june-2015/]
+
+--
+
+<div class="circle red" style="position:absolute; right: 3em; margin-top: -6em;">82%/12%</div>
+
+---
+
+class: middle center
+
+![Nettleserstøtte for ES6](resources/browser-support.png)
+
+
+---
+
+class: middle center
+
+![Nettleserstøtte for ES6 med polyfill](resources/browser-support-polyfill.png)
+
+---
+
+class: fullscreen
+
+
+<iframe src="https://babeljs.io/repl/" style="width:100%; height:100%">
+
+
+---
+
+class: fullscreen
+
+![variables](resources/variables.png)
+
+<div class="overlay loud" style="top: 62%">
+    Variabler
+    <!-- <small style="display:block;">Variabler</small> -->
+</div>
+
+
+---
+
+# Let
+
+  Funker nesten likt som var
+
+  ```javascript
+  var x = true
+  let y = true
+
+  x // true
+  y // true
+  ```
+
+--
+
+  Men er block-scoped, ikke function-scoped
+
+  ```javascript
+  if(true) {
+    var x = true;
+  }
+
+  x // true
+
+
+  if(true) {
+    let y = true;
+  }
+
+  y // ReferenceError: y is not defined
+  ```
+
+---
+
+# Let
+
+  Kan brukes i fake scopes { ... }
+
+  ```javascript
+  {
+    let x = true;
+  }
+
+  x // ReferenceError: x is not defined
+  ```
+
+---
+
+# Const
+
+  Også block scoped
+
+  ```javascript
+  if (true) {
+    const x = true;
+  }
+
+  x // ReferenceError: x is not defined
+  ```
+
+--
+
+  konstanter, kan ikke endres
+
+  ```javascript
+  const x = 'I am a const';
+  x = 'Cant change you?'; // SyntaxError: "constString" is read-only
+  ```
+
+--
+
+  Men du kan fortsatt endre innholdet
+
+  ```javascript
+  const arr = [1, 2];
+  arr[0] = 0;
+
+  arr[0] // 0
+  ```
+
+---
+
+
+class: fullscreen
+
+![Destructuring](resources/destructuring.png)
+
+<div class="overlay loud" style="top: 62%">
+  Destructuring
+  <!-- <small style="display:block;">Variabler</small> -->
+</div>
+
+
+---
+
+#Assigning fra array
+
+  ```javascript
+  let arr = [1, 2, 3, 4, 5];
+
+  let [first, second] = arr;
+  first   // 1
+  second  // 2
+  ```
+
+--
+
+ Skipp enkeltverdier
+
+  ```javascript
+  let arr = [1, 2, 3, 4, 5]
+
+  let [first,, third] = arr;
+  first   // 1
+  third   // 3
+  ```
+
+--
+
+  Støtter også nøstede array
+
+  ```javascript
+  let arr = [[1, 2], 3, 4, 5]
+
+  let [[first, second], third] = arr;
+  first   // 1
+  second  // 2
+  third   // 3
+  ```
+
+
+---
+
+# Rest operator
+
+  Hente ut resten fra et array
+
+  ```javascript
+  let arr = [1, 2, 3, 4, 5];
+
+  let [first, second, ...rest] = arr;
+  first   // 1
+  second  // 2
+  rest    // [3, 4, 5]
+  ```
+
+--
+
+  Men rest operator må alltid være til slutt
+
+  ```javascript
+    let arr = [1, 2, 3, 4, 5];
+    let [first,, ...rest, fifth] // Syntax Error: Unexpected token
+  ```
+
+---
+
+ # spread operator
+
+  oversetter et array til argumenter
+
+
+  ```javascript
+  new Date(2011, 3, 1, 9, 0, 0);    // Fri Apr 01 2011 09:00:00 GMT+0200
+
+  new Date(...[2011, 3, 1, 9, 0]);  // Fri Apr 01 2011 09:00:00 GMT+0200
+  ```
+
+--
+
+  ```javascript
+  [a, b] = [...[0, 1, 2, 3, 4, 5]];
+  ```
+--
+  ```javascript
+  myFunction(...[true, false]);
+  ```
+
+---
+
+#Assigning av objekter
+
+  ```javascript
+  let obj = {a:'a', b:'b', c:'c', d:'d', e:'e'};
+
+  let {a, b} = obj;
+
+  a // 'a'
+  b // 'b'
+  ```
+
+--
+  Assigne med renaming
+
+  ```javascript
+
+  let obj = {a:'a', b:'b', c:'c', d:'d', e:'e'};
+
+  let {a:nyttNavn, b:endaNyttNavn} = obj;
+
+  nyttNavn      // 'a'
+  endaNyttNavn  // 'b'
+  ```
+---
+
+  #Assigning av objekter fra variabler
+
+  ```javascript
+  let a = 1;
+  let b = 2;
+  let c = 3;
+
+  let obj = {a,b,c};
+
+  obj // {a:1, b:2, c:3}
+  ```
+
+---
+exclude:true
+
+  #Oppgaver
+
+  Her kan det være slides med oppgaver
+
+    </textarea>
+    <script src="http://gnab.github.com/remark/downloads/remark-0.11.0.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var slideshow = remark.create({
+          highlightStyle: 'solarized_light',
+          highlightLanguage: 'html',
+          navigation: {
+            scroll: false
+          }
+        });
+    </script>
+  </body>
+</html>
