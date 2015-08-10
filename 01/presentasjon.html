@@ -94,7 +94,7 @@ class: fullscreen
 
   Funker nesten likt som var
 
-  ```javascript
+  ```
   var x = true
   let y = true
 
@@ -106,7 +106,7 @@ class: fullscreen
 
   Men er block-scoped, ikke function-scoped
 
-  ```javascript
+  ```
   if(true) {
     var x = true;
   }
@@ -127,7 +127,7 @@ class: fullscreen
 
   Kan brukes i fake scopes { ... }
 
-  ```javascript
+  ```
   {
     let x = true;
   }
@@ -141,7 +141,7 @@ class: fullscreen
 
   Også block scoped
 
-  ```javascript
+  ```
   if (true) {
     const x = true;
   }
@@ -153,7 +153,7 @@ class: fullscreen
 
   konstanter, kan ikke endres
 
-  ```javascript
+  ```
   const x = 'I am a const';
   x = 'Cant change you?'; // SyntaxError: "constString" is read-only
   ```
@@ -162,7 +162,7 @@ class: fullscreen
 
   Men du kan fortsatt endre innholdet
 
-  ```javascript
+  ```
   const arr = [1, 2];
   arr[0] = 0;
 
@@ -186,7 +186,7 @@ class: fullscreen
 
 #Assigning fra array
 
-  ```javascript
+  ```
   let arr = [1, 2, 3, 4, 5];
 
   let [first, second] = arr;
@@ -198,7 +198,7 @@ class: fullscreen
 
  Skipp enkeltverdier
 
-  ```javascript
+  ```
   let arr = [1, 2, 3, 4, 5]
 
   let [first,, third] = arr;
@@ -210,7 +210,7 @@ class: fullscreen
 
   Støtter også nøstede array
 
-  ```javascript
+  ```
   let arr = [[1, 2], 3, 4, 5]
 
   let [[first, second], third] = arr;
@@ -226,7 +226,7 @@ class: fullscreen
 
   Hente ut resten fra et array
 
-  ```javascript
+  ```
   let arr = [1, 2, 3, 4, 5];
 
   let [first, second, ...rest] = arr;
@@ -239,7 +239,7 @@ class: fullscreen
 
   Men rest operator må alltid være til slutt
 
-  ```javascript
+  ```
     let arr = [1, 2, 3, 4, 5];
     let [first,, ...rest, fifth] // Syntax Error: Unexpected token
   ```
@@ -251,7 +251,7 @@ class: fullscreen
   oversetter et array til argumenter
 
 
-  ```javascript
+  ```
   new Date(2011, 3, 1, 9, 0, 0);    // Fri Apr 01 2011 09:00:00 GMT+0200
 
   new Date(...[2011, 3, 1, 9, 0]);  // Fri Apr 01 2011 09:00:00 GMT+0200
@@ -259,11 +259,11 @@ class: fullscreen
 
 --
 
-  ```javascript
+  ```
   [a, b] = [...[0, 1, 2, 3, 4, 5]];
   ```
 --
-  ```javascript
+  ```
   myFunction(...[true, false]);
   ```
 
@@ -271,7 +271,7 @@ class: fullscreen
 
 #Assigning av objekter
 
-  ```javascript
+  ```
   let obj = {a:'a', b:'b', c:'c', d:'d', e:'e'};
 
   let {a, b} = obj;
@@ -283,7 +283,7 @@ class: fullscreen
 --
   Assigne med renaming
 
-  ```javascript
+  ```
 
   let obj = {a:'a', b:'b', c:'c', d:'d', e:'e'};
 
@@ -296,7 +296,7 @@ class: fullscreen
 
   #Assigning av objekter fra variabler
 
-  ```javascript
+  ```
   let a = 1;
   let b = 2;
   let c = 3;
