@@ -3,60 +3,69 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Hva er nytt i ES6</title>
-    <link href='../remark/inconsolata.css' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../remark/remark-bekk.css">
-    <style type="text/css" media="screen">
-      .loud {font-size:2em;}
-
-      blockquote, .loud {font-size:2em;}
-      blockquote cite, .loud small {font-size:.7em;color:#FD5158;}
-      .remark-slide .overlay {
-        padding: 1em 0;
-        text-align: center;
-        font-family: Inconsolata;
-      }
-      .remark-slide .overlay h1 > span {background:transparent !important;}
-      .remark-slide .overlay h1:before {border-top:none !important;}
-    </style>
+    <link rel="stylesheet" href="../node_modules/remark-bekk/build/bekk.css">
   </head>
-  <body>
+  <body class="bekk-black">
     <textarea id="source">
 
-class: fullscreen
+class: front-page
 
-![code](https://raw.githubusercontent.com/ewendel/frontend--bilder/master/code.jpeg)
+# Hva er nytt i ES6
 
-<div class="overlay loud" style="top: 55%">
-<p>
-    Kurs i frontendutvikling
-    <small style="display:block;">En introduksjon til HTML, CSS og JavaScript</small>
-</p>
-</div>
+## Miniseminaret 2015
 
-???
+Kent Andersen
 
-Hei og velkommen!
-Vi skal gjennom HTML, CSS og JS på åtte timer.
-Da vil det nødvendigvis gå fort, men forhåpentligvis har vi laget et opplegg hvor d går an å henge med likevel.
-Kurset er delt inn i korte presentasjonsbiter for hvert tema hvor dere gjør praktiske oppgaver etterpå.
-Det er lagt opp til at man ikke kan noe fra før.
+Erik Wendel
+
+17/10/2015
+
+---
+
+class: middle center
+
+.card[
+  .picture[
+    ![Kent Andersen](https://intern.bekk.no/Employees/ViewEmployeeImage.ashx?thumbnail=true&thumbsize=500&employee=508)
+  ]
+  .name[Kent Andersen]
+  .title[Frontend-utvikler]
+  .department[Interactive]
+  .phone[952 90 948]
+  .email[kent.andersen@bekk.no]
+]
+
+.card[
+  .picture[
+    ![Erik Wendel](https://intern.bekk.no/Employees/ViewEmployeeImage.ashx?thumbnail=true&thumbsize=500&employee=559)
+  ]
+  .name[Erik Wendel]
+  .title[Fagleder Webteknologier]
+  .department[Technology]
+  .phone[416 97 226]
+  .email[erik.wendel@bekk.no]
+]
+
 
 ---
 
 class: middle center
 
 
-![Nettleserstatistikk](resources/browsers-all.jpg)
+![Nettleserstatistikk](resources/browsers-all.png)
 
 
 .source[http://tech.finn.no/2015/06/25/browser-statistics-june-2015/]
 
 --
 
-<div class="circle red" style="position:absolute; right: 3em; margin-top: -6em;">82%/12%</div>
+<div class="circle red" style="position:absolute; right: 3em; margin-top: -6em;">88%/12%</div>
+
+???
+
+88% er på auto update path.
 
 ---
-
 class: middle center
 
 ![Nettleserstøtte for ES6](resources/browser-support.png)
@@ -78,13 +87,11 @@ class: fullscreen
 
 ---
 
-class: fullscreen
+background-image: url(resources/variables.png)
 
-![variables](resources/variables.png)
-
-<div class="overlay loud" style="top: 62%">
-    Variabler
-    <!-- <small style="display:block;">Variabler</small> -->
+<div class="overlay transparent loud center" style="top: 62%">
+    <h1>Variabler</h1>
+    <small style="display:block;">det er fine greier det</small>
 </div>
 
 
@@ -113,7 +120,6 @@ class: fullscreen
 
   x // true
 
-
   if(true) {
     let y = true;
   }
@@ -139,7 +145,7 @@ class: fullscreen
 
 # Const
 
-  Også block scoped
+  Også block-scoped
 
   ```
   if (true) {
@@ -171,14 +177,10 @@ class: fullscreen
 
 ---
 
+background-image: url(resources/destructuring.png)
 
-class: fullscreen
-
-![Destructuring](resources/destructuring.png)
-
-<div class="overlay loud" style="top: 62%">
-  Destructuring
-  <!-- <small style="display:block;">Variabler</small> -->
+<div class="overlay transparent loud center" style="top: 62%">
+  <h1>Destructuring<h1>
 </div>
 
 
@@ -196,8 +198,6 @@ class: fullscreen
 
 --
 
- Skipp enkeltverdier
-
   ```
   let arr = [1, 2, 3, 4, 5]
 
@@ -206,9 +206,10 @@ class: fullscreen
   third   // 3
   ```
 
---
+???
+kent var her
 
-  Støtter også nøstede array
+--
 
   ```
   let arr = [[1, 2], 3, 4, 5]
@@ -219,12 +220,13 @@ class: fullscreen
   third   // 3
   ```
 
+???
+her også
 
 ---
 
 # Rest operator
 
-  Hente ut resten fra et array
 
   ```
   let arr = [1, 2, 3, 4, 5];
@@ -234,15 +236,19 @@ class: fullscreen
   second  // 2
   rest    // [3, 4, 5]
   ```
+???
+Hente ut resten fra et array
 
 --
 
-  Men rest operator må alltid være til slutt
 
   ```
-    let arr = [1, 2, 3, 4, 5];
-    let [first,, ...rest, fifth] // Syntax Error: Unexpected token
+  let arr = [1, 2, 3, 4, 5];
+  let [first,, ...rest, fifth] // Syntax Error: Unexpected token
   ```
+
+???
+Men rest operator må alltid være til slutt
 
 ---
 
@@ -314,7 +320,7 @@ exclude:true
   Her kan det være slides med oppgaver
 
     </textarea>
-    <script src="../remark/remark-0.11.0.min.js" type="text/javascript"></script>
+    <script src="../node_modules/remark-bekk/vendor/remark-0.11.0.min.js" type="text/javascript"></script>
     <script src="../remark/init.js" type="text/javascript"></script>
   </body>
 </html>
