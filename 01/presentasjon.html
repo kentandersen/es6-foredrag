@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Hva er nytt i ES6</title>
-    <link rel="stylesheet" href="../node_modules/remark-bekk/build/bekk.css">
+    <link rel="stylesheet" href="../node_modules/remark-bekk/dist/bekk.css">
   </head>
   <body class="bekk-black">
     <textarea id="source">
@@ -63,19 +63,29 @@ class: middle center
 
 ???
 
-88% er på auto update path.
+88% er på nyeste versjon
+
 
 ---
 class: middle center
 
 ![Nettleserstøtte for ES6](resources/browser-support.png)
 
+???
+
+* mye rødt, selv fra de nyeste / beste nettleserene
+* legg merke til Safari, støtter nesten ingenting
 
 ---
 
 class: middle center
 
 ![Nettleserstøtte for ES6 med polyfill](resources/browser-support-polyfill.png)
+
+???
+
+* Polyfill gjør det mulig å bruke es6 i dag
+* kompelerer fra ES6 til ES5
 
 ---
 
@@ -84,36 +94,33 @@ class: fullscreen
 
 <iframe src="https://babeljs.io/repl/" style="width:100%; height:100%">
 
-
 ---
 
+class: middle center
 background-image: url(resources/variables.png)
 
-<div class="overlay transparent loud center" style="top: 62%">
-    <h1>Variabler</h1>
-    <small style="display:block;">det er fine greier det</small>
-</div>
-
+# Variabler
 
 ---
 
 # Let
 
-  Funker nesten likt som var
-
-  ```
+```
   var x = true
   let y = true
 
   x // true
   y // true
-  ```
+```
+
+???
+
+Funker nesten likt som var
 
 --
 
-  Men er block-scoped, ikke function-scoped
 
-  ```
+```
   if(true) {
     var x = true;
   }
@@ -125,55 +132,65 @@ background-image: url(resources/variables.png)
   }
 
   y // ReferenceError: y is not defined
-  ```
+```
+???
+
+Men er block-scoped, ikke function-scoped
 
 ---
 
 # Let
 
-  Kan brukes i fake scopes { ... }
 
-  ```
+```
   {
     let x = true;
   }
 
   x // ReferenceError: x is not defined
-  ```
+```
+
+???
+  Kan brukes i fake scopes { ... }
 
 ---
 
 # Const
 
-  Også block-scoped
 
-  ```
+```
   if (true) {
     const x = true;
   }
 
   x // ReferenceError: x is not defined
-  ```
+```
+
+???
+
+  Også block-scoped
 
 --
 
-  konstanter, kan ikke endres
-
-  ```
+```
   const x = 'I am a const';
   x = 'Cant change you?'; // SyntaxError: "constString" is read-only
-  ```
+```
+
+???
+  konstanter, kan ikke endres
 
 --
 
-  Men du kan fortsatt endre innholdet
-
-  ```
+```
   const arr = [1, 2];
   arr[0] = 0;
 
   arr[0] // 0
-  ```
+```
+
+???
+  Men du kan fortsatt endre innholdet
 
 ---
 
@@ -186,66 +203,140 @@ background-image: url(resources/destructuring.png)
 
 ---
 
-#Assigning fra array
+# Assigning fra array
 
-  ```
+```
   let arr = [1, 2, 3, 4, 5];
 
   let [first, second] = arr;
   first   // 1
   second  // 2
-  ```
+```
+
+???
+  gjør det penere å assigne verdier
 
 --
 
-  ```
+```
   let arr = [1, 2, 3, 4, 5]
 
   let [first,, third] = arr;
   first   // 1
   third   // 3
-  ```
+```
 
 ???
-kent var her
+  kan enkelt hoppe over verdier
 
 --
 
-  ```
+```
   let arr = [[1, 2], 3, 4, 5]
 
   let [[first, second], third] = arr;
   first   // 1
   second  // 2
   third   // 3
-  ```
+```
 
 ???
-her også
+  eller hente ut fra nøstede arrary
+
+---
+
+#Assigning av objekter
+
+```
+  let obj = {a:'a', b:'b', c:'c', d:'d', e:'e'};
+
+  let {a, b} = obj;
+
+  a // 'a'
+  b // 'b'
+```
+
+--
+
+  Assigne med renaming
+
+```
+
+  let obj = {a:'a', b:'b', c:'c', d:'d', e:'e'};
+
+  let {a:nyttNavn, b:endaNyttNavn} = obj;
+
+  nyttNavn      // 'a'
+  endaNyttNavn  // 'b'
+```
+
+---
+
+# Assigning med defaults
+
+  ## Arrays
+
+```
+    let [a=1] = [];
+
+    a // 1
+```
+--
+
+  ## Objekter
+```
+  let {a=1} = {b:"ball"}
+
+  a // 1
+
+```
+--
+
+```
+  let {a:alder=1} = {b:"ball"}
+
+  alder // 1
+```
+
+???
+  med renaming og defaults
+---
+
+  #Assigning av objekter fra variabler
+
+```
+  let a = 1;
+  let b = 2;
+  let c = 3;
+
+  let obj = {a,b,c};
+
+  obj // {a:1, b:2, c:3}
+```
 
 ---
 
 # Rest operator
 
 
-  ```
+```
   let arr = [1, 2, 3, 4, 5];
 
   let [first, second, ...rest] = arr;
   first   // 1
   second  // 2
   rest    // [3, 4, 5]
-  ```
+```
 ???
-Hente ut resten fra et array
+  Hente ut resten fra et array
 
 --
 
 
-  ```
+```
   let arr = [1, 2, 3, 4, 5];
   let [first,, ...rest, fifth] // Syntax Error: Unexpected token
-  ```
+```
 
 ???
 Men rest operator må alltid være til slutt
@@ -254,71 +345,70 @@ Men rest operator må alltid være til slutt
 
  # spread operator
 
-  oversetter et array til argumenter
 
-
-  ```
+```
   new Date(2011, 3, 1, 9, 0, 0);    // Fri Apr 01 2011 09:00:00 GMT+0200
 
   new Date(...[2011, 3, 1, 9, 0]);  // Fri Apr 01 2011 09:00:00 GMT+0200
-  ```
+```
+
+???
+  må ikke forveksles med rest operator
+  oversetter et array til argumenter
 
 --
 
-  ```
+```
   [a, b] = [...[0, 1, 2, 3, 4, 5]];
-  ```
---
-  ```
-  myFunction(...[true, false]);
-  ```
 
----
+  a // 0
+  b // 1
+```
 
-#Assigning av objekter
-
-  ```
-  let obj = {a:'a', b:'b', c:'c', d:'d', e:'e'};
-
-  let {a, b} = obj;
-
-  a // 'a'
-  b // 'b'
-  ```
+???
+  litt søkt eksempel
 
 --
-  Assigne med renaming
+```
+  let arr = [true, false];
 
-  ```
+  myFunction(...arr);
+```
 
-  let obj = {a:'a', b:'b', c:'c', d:'d', e:'e'};
-
-  let {a:nyttNavn, b:endaNyttNavn} = obj;
-
-  nyttNavn      // 'a'
-  endaNyttNavn  // 'b'
-  ```
----
-
-  #Assigning av objekter fra variabler
-
-  ```
-  let a = 1;
-  let b = 2;
-  let c = 3;
-
-  let obj = {a,b,c};
-
-  obj // {a:1, b:2, c:3}
-  ```
+???
+  mer passende hvis argumentene er en variabel
 
 ---
-exclude:true
 
-  #Oppgaver
+exclude:false
 
-  Her kan det være slides med oppgaver
+class: cols two
 
+#Oppgaver
+
+.col[
+  ## Block scope
+  * [let declaration](http://tddbin.com/#?kata=es6/language/block-scoping/let)
+  * [const declaration](http://tddbin.com/#?kata=es6/language/block-scoping/const)
+
+
+  ## Destructuring
+  * [array](http://tddbin.com/#?kata=es6/language/destructuring/array)
+  * [object](http://tddbin.com/#?kata=es6/language/destructuring/object)
+  * [defaults](http://tddbin.com/#?kata=es6/language/destructuring/defaults)
+  * [parameters](http://tddbin.com/#?kata=es6/language/destructuring/parameters)
+  * [assign](http://tddbin.com/#?kata=es6/language/destructuring/assign)
+]
+
+.col[
+  ## Rest operator
+  * [som parameter](http://tddbin.com/#?kata=es6/language/rest/as-parameter)
+  * [med destructuring](http://tddbin.com/#?kata=es6/language/rest/with-destructuring)
+
+
+  ## Spread operator
+  * [med arrays](http://tddbin.com/#?kata=es6/language/spread/with-arrays)
+]
     </textarea>
     <script src="../node_modules/remark-bekk/vendor/remark-0.11.0.min.js" type="text/javascript"></script>
     <script src="../remark/init.js" type="text/javascript"></script>

@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>Hva er nytt i ES6</title>
-    <link rel="stylesheet" href="../node_modules/remark-bekk/build/bekk.css">
+    <link rel="stylesheet" href="../node_modules/remark-bekk/dist/bekk.css">
   </head>
   <body class="bekk-black">
     <textarea id="source">
@@ -20,19 +20,17 @@ class: fullscreen
 ---
 #Export
 
-  ```
+```
   export const MY_CONSTANT = 7;
 
   export function multiply(x) {
     return x * MY_CONSTANT;
   }
-  ```
+```
 
 --
 
-AMD-style export
-
-  ```
+```
   const MY_CONSTANT = 7;
 
   function multiply(x) {
@@ -40,64 +38,70 @@ AMD-style export
   }
 
   export { multiply, MY_CONSTANT };
-  ```
+```
+???
+  AMD-style export
+
 --
 
-  Rename under export
-
-  ```
+```
   export { multiply as mult, MY_CONSTANT as SOME_CONSTANT };
-  ```
-
----
-  #Import
-
-  import-key er relativ bane til filen du importerer
-
-  ```
-  import { multiply } from 'lib/calc';
-  ```
-
---
-
-  import av flere exports
-
-  ```
-  import { multiply, MY_CONSTANT } from 'lib/calc';
-  ```
-
---
-
-  rename under import
-
-  ```
-  import { multiply as mult } from 'lib/calc';
-  ```
+```
 
 ???
+  Rename under export
 
+---
+
+#Import
+
+
+```
+  import { multiply } from 'lib/calc';
+```
+???
+  import-key er relativ bane til filen du importerer
+
+--
+
+```
+  import { multiply, MY_CONSTANT } from 'lib/calc';
+```
+
+???
+  import av flere exports
+
+--
+
+```
+  import { multiply as mult } from 'lib/calc';
+```
+
+???
+rename under import
 åpner for bedre verktøy-støtte. Feks editorer kan med sikkerhet finne ut hvor en variabel / funksjon er deklarert
 
 ---
 
 #Default i moduler
 
-  ```
+```
   export default function(x) {
     return x * MY_CONSTANT;
   }
-  ```
+```
 
 --
 
 
-  ```
+```
   import Multiply from 'lib/calc';
-  // legg merke til at Customer ikke er wrappet i {}
+  // legg merke til at Multiply ikke er wrappet i {}
 
-  import {default as Customer} from 'models/Customer';
-  ```
-  Disse to gjør akkurat det samme
+  import {default as Multiply} from 'lib/calc';
+
+  // Disse to gjør akkurat det samme
+```
 
 ---
 
@@ -114,80 +118,367 @@ class: fullscreen
 
 #Inline arrow functions
 
-  Siste resultat er automatisk returnert
 
   et parameter
 
-  ```
+```
   a => a()
-  ```
+```
 
 
   flere parameter
 
-  ```
+```
   (a,b) => a+b
-  ```
+```
 
   ingen parameter
 
-  ```
+```
   () => a();
-  ```
+```
+
+???
+  Siste resultat er automatisk returnert
+
 ---
 
 #Multiline arrow functions
 
-  Må manuellt returnere
 
   et parameter
 
-  ```
+```
   a => {
     let b = a();
     return b;
   }
-  ```
+```
 
   flere parameter
 
-  ```
+```
   (a,b) => {
     let c = a+b;
     return b;
   }
-  ```
+```
 
   ingen parameter
 
-  ```
+```
   () => {
     let b = a();
     return b;
   }
-  ```
+```
+
+???
+  Må manuellt returnere
 
 ---
 
 #Arrow functions
 
-Context inne i en arrow function er det samme som der den blir deklarert
 
-  ```
-  var that = this;
+```
+  var outerContext = this;
 
   () => {
-    this === that; // true
+    this === outerContext; // true
   }
-  ```
+```
+???
+  Context inne i en arrow function er det samme som der den blir deklarert
 
 ---
 
-exclude:true
+class: middle center
 
-  #Oppgaver
+# Promise
 
-  Her kan det være slides med oppgaver
+---
+class: middle
+
+
+  <blockquote style="font-size: 2em">
+    The Promise object is used for deferred and asynchronous computations. A Promise represents an operation that hasn't completed yet, but is expected in the future.
+  </blockquote>
+
+
+
+  .source[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise]
+
+---
+
+# Promise
+
+  klassisk metode med callback
+
+```
+  noeAsync(function() {
+    // Gjør noe gøy
+  });
+```
+
+--
+
+  Kan fort bli stygt med callback i parallel
+
+```
+  noeAsync(function() {
+    noeAnnetAsync(function() {
+      noeTredjeAsync(function() {
+        noeFjerdeAsync(function() {
+          // Gjør noe gøy
+        });
+      });
+    })
+  })
+```
+
+---
+
+# Promise
+
+```
+  noeAsync().then(function() {
+    // alt gikk bra
+  }).cache(function() {
+    // noe gikk feil
+  });
+```
+
+--
+
+```
+  noeAsync()
+    .then(noeAnnetAsync)
+    .then(noeTredjeAsync);
+```
+
+---
+
+# Promise
+
+  ## Ufullstendig liste over custom implentasjoner
+  * [jQuery deferred.promise](https://api.jquery.com/deferred.promise/)
+  * [then/promise](https://github.com/then/promise/blob/master/src/core.js)
+  * [kriskowal/q](https://github.com/kriskowal/q/blob/v1/design/README.js)
+  * [petkaantonov/bluebird](https://github.com/petkaantonov/bluebird)
+
+???
+  Alle implementerer samme konseptet, men har forskjellig funksjonalitet og api
+
+---
+
+# Promise
+
+ ```
+  new Promise(function(resolve, reject) {
+    // Gjør noe spennende.
+    // kall resolve hvis alt gikk bra
+    // kall rejecte hvis noe feilet
+  });
+ ```
+
+---
+
+# Promise
+
+Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
+
+```
+  function hentTall() {
+    return new Promise(function(resolve, reject) {
+      setTimeout(function() {
+        var tall = Math.random()
+        tall > 0.5 ? resolve(tall) : reject(tall);
+      }, 1000);
+    });
+  }
+```
+
+--
+
+```
+  hentTall().then(function(tall) {
+    // over 0.5
+  }).cache(function(tall) {
+    // under 0.5
+  });
+```
+
+---
+
+# Promise
+
+```
+    var jsonPromise = new Promise(function(resolve, reject) {
+      $.getJSON("some/endpoint").then(resolve, reject);
+    });
+```
+
+???
+  konverter jquery deferred (eller andre implementasjoner) til es6 promises
+
+---
+
+class: middle center
+
+# Class
+
+
+---
+
+# Class
+
+Ikke ordentlig klasser, bare syntax-sukker oppå prototype
+
+
+```
+  class User {
+    constructor(id) {
+
+    }
+
+    someFunction() {
+      // function body
+    }
+  }
+```
+
+--
+
+
+```
+  var User = function(id) {}
+
+  User.prototype.someFunction() {
+      // function body
+  };
+```
+
+???
+  Dette er akkurat det samme
+
+--
+
+```
+  let user = new User(12);
+```
+
+???
+  fortsatt samme syntax for å instansiere
+
+---
+
+# Class
+
+```
+  var myFunctionName = 'nameOfFunction'
+
+  class User {
+    constructor(id) {}
+
+    someFunction() {
+      // function body
+    }
+
+    [myFunctionName]() {
+      // function body
+    }
+  }
+```
+
+???
+  dynamiske funnskjonsnavn
+
+---
+
+# Class
+
+```
+  class User {
+    constructor(id) {}
+
+    get age() {
+      return this.age
+    }
+
+    set age(age) {
+      this.age = age
+    }
+  }
+```
+
+???
+  getter og setter metode for properties
+
+
+---
+
+# Arv
+
+```
+  class User {}
+  class SuperUser extends User {}
+```
+
+
+--
+
+```
+  class User {
+    constructor() {}
+
+    someFunction() {}
+  }
+
+  class SuperUser extends User {
+    constructor() {
+      super();
+    }
+
+    someFunction() {
+      super.someFunction();
+    }
+  }
+```
+
+???
+  super metoder
+
+---
+
+exclude:false
+class: cols two
+
+#Oppgaver
+
+.col[
+  ## Import / Export
+  * [import uttrykk](http://tddbin.com/#?kata=es6/language/modules/import)
+
+
+  ## Arrow functions
+  * [grunnleggende](http://tddbin.com/#?kata=es6/language/arrow-functions/basics)
+  * [funksjons binding](http://tddbin.com/#?kata=es6/language/arrow-functions/binding)
+
+
+  ## Promise
+  * TODO: trenger noen oppgaver
+]
+
+.col[
+  ## Class
+  * [creation](http://tddbin.com/#?kata=es6/language/class/creation)
+  * [getter og setter](http://tddbin.com/#?kata=es6/language/class/accessors)
+  * [extends](http://tddbin.com/#?kata=es6/language/class/extends)
+  * [mer extends](http://tddbin.com/#?kata=es6/language/class/more-extends)
+  * [super i metoder](http://tddbin.com/#?kata=es6/language/class/super-in-method)
+  * [super i constructor](http://tddbin.com/#?kata=es6/language/class/super-in-constructor)
+]
 
     </textarea>
     <script src="../node_modules/remark-bekk/vendor/remark-0.11.0.min.js" type="text/javascript"></script>
