@@ -14,17 +14,224 @@ class: center middle
 
 ---
 
+
 # Map
-  * erstatter object i mange tilfeller
-  * alt kan være en key
-  * kan kanskje være nøstet eller ikke? vet ikke helt jeg.
-  * har getter / setter ikke dott notasjon
+
+```
+  let m = new Map();
+```
+
+--
+
+```
+  let m = new Map([
+    ["key1", "value1"],
+    ["key2", "value2"],
+    ["key3", "value3"]
+  ])
+```
+
+--
+
+```
+  m.size // 3
+```
+
+---
+# Map
+
+```
+  m.set("key", "value");
+```
+
+--
+
+```
+  m.get("key"); // "value"
+  m.key         // undefined
+```
+
+???
+Har getter / setter ikke dot-notasjon
+
+--
+
+```
+  m.set("key2", {otherKey: "value"})
+  m.key2.otherValue // Cannot read property 'otherValue' of undefined
+```
+--
+
+```
+  m.get("key").otherValye // "value"
+```
+
+???
+Begrenset støtte for nøsting
+
+---
+
+# Map
+
+```
+  let obj = {};
+  let m = new Map();
+
+  m.set(obj, "some value");
+```
+
+--
+
+```
+  m.get(obj); // "some value"
+```
+--
+
+Alt kan være en key
+
+```
+  let arr = [];
+
+  m.set(arr, "some value2");
+  m.get(arr); // "some value2"
+```
+--
+
+```
+  let arr = [];
+
+  m.set([], "some value2");
+  m.get([]); // undefined
+```
+
+???
+Må være en gyldig peker eller en primitiv
+
+---
+
+# Map
+
+```
+  let m = new Map();
+
+  m.set("key", "value1");
+  m.set("key", "value2");
+  m.set("key", "value3");
+
+  m.get("key"); // value3
+```
+
+--
+
+
+
+???
+Map er også unikt
+
+---
+
+
+# Map
+
+```
+  let m = new Map([
+    ["key", "value"]
+  ]);
+
+  m.delete("key");
+  m.get("key"); // undefined
+```
+
+--
+
+```
+  m.forEach(function(value, key, map) {
+    // function body
+  }, this);
+```
+
+---
+
+# Map
+
+## Fordeler med Map fremfor Object
+* Object har en prototype, som gjør at det alltid finnes default keys i en map
+* Keys i en Object er stringer, mens Map kan være hva som helst
+* Har et size parameter for enkelt holde styr på størrelsen
+* Map kan ittereres over, og har alltid samme rekkefølge som elementene ble lagt inn i
+
+
+.source[https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map#Objects_and_maps_compared]
+
+---
+
+
+class: center middle
+
+# Set
 
 ---
 
 # Set
-  * erstatter array
-  * unike verdier
+
+```
+  let s = new Set();
+```
+
+--
+
+```
+  let s = new Set([
+    "value1",
+    "value2",
+    "value3"
+  ]);
+```
+
+???
+ikke typed. Et Set kan inneholde verdier av forskjellig type
+
+---
+
+# Set
+
+```
+  let s = new Set();
+
+  s.add("some value");
+  s.size; // 1
+```
+
+--
+
+```
+  s.has("some value"); // true
+```
+
+--
+
+```
+  s.add("some value");
+  s.add("some value");
+  s.size; // 1
+```
+
+--
+
+```
+  s.delete("some value");
+```
+
+--
+
+```
+  s.forEach(function(value, value, set) {
+    // function body
+  }, this);
+```
+
+???
+The are no keys in Set objects. However, the first two arguments are both values contained in the Set, so that the callback function is consistent with the forEach methods for Map and Array.
 
 ---
 
