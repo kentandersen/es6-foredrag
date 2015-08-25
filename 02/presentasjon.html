@@ -209,7 +209,7 @@ class: middle
   klassisk metode med callback
 
 ```
-  noeAsync(function() {
+  noeAsync(() => {
     // Gjør noe gøy
   });
 ```
@@ -219,10 +219,10 @@ class: middle
   Kan fort bli stygt med callback i parallel
 
 ```
-  noeAsync(function() {
-    noeAnnetAsync(function() {
-      noeTredjeAsync(function() {
-        noeFjerdeAsync(function() {
+  noeAsync(() => {
+    noeAnnetAsync(() => {
+      noeTredjeAsync(() => {
+        noeFjerdeAsync(() => {
           // Gjør noe gøy
         });
       });
@@ -235,19 +235,33 @@ class: middle
 # Promise
 
 ```
-  noeAsync().then(function() {
+  noeAsync().then(() => {
     // alt gikk bra
-  }).cache(function() {
+  }).cache(() => {
     // noe gikk feil
   });
 ```
+--
+
+```
+  noeAsync().then(() =>{
+    // alt gikk bra
+  }, () =>{
+    // noe gikk feil
+  });
+```
+
+???
+  Ikke anbefalt syntax, hvis noe feiler i den første funksjonen vil ikke den andre bli kalt
 
 --
 
 ```
   noeAsync()
     .then(noeAnnetAsync)
-    .then(noeTredjeAsync);
+    .then(noeTredjeAsync)
+    .then(noeFjerdeAsync)
+    .cache(taIMotFeilen);
 ```
 
 ---
@@ -268,7 +282,7 @@ class: middle
 # Promise
 
  ```
-  new Promise(function(resolve, reject) {
+  new Promise((resolve, reject) => {
     // Gjør noe spennende.
     // kall resolve hvis alt gikk bra
     // kall rejecte hvis noe feilet
@@ -284,7 +298,7 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
 ```
   function hentTall() {
     return new Promise(function(resolve, reject) {
-      setTimeout(function() {
+      setTimeout(() => {
         var tall = Math.random()
         tall > 0.5 ? resolve(tall) : reject(tall);
       }, 1000);
@@ -295,9 +309,9 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
 --
 
 ```
-  hentTall().then(function(tall) {
+  hentTall().then(tall => {
     // over 0.5
-  }).cache(function(tall) {
+  }).cache(tall => {
     // under 0.5
   });
 ```
@@ -307,7 +321,7 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
 # Promise
 
 ```
-    var jsonPromise = new Promise(function(resolve, reject) {
+    var jsonPromise = new Promise((resolve, reject) => {
       $.getJSON("some/endpoint").then(resolve, reject);
     });
 ```
