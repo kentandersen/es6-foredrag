@@ -8,14 +8,10 @@
   <body class="bekk-black">
     <textarea id="source">
 
-class: fullscreen
 
-![Modules](resources/modules.png)
+class: middle center
 
-<div class="overlay transparent loud center" style="top: 62%">
-    Modules
-</div>
-
+# Modules
 
 ---
 #Export
@@ -105,13 +101,10 @@ rename under import
 
 ---
 
-class: fullscreen
 
-![Modules](resources/modules.png)
+class: middle center
 
-<div class="overlay transparent loud center" style="top: 62%">
-  Arrow functions
-</div>
+# Arrow functions
 
 
 ---
@@ -216,7 +209,7 @@ class: middle
   klassisk metode med callback
 
 ```
-  noeAsync(function() {
+  noeAsync(() => {
     // Gjør noe gøy
   });
 ```
@@ -226,10 +219,10 @@ class: middle
   Kan fort bli stygt med callback i parallel
 
 ```
-  noeAsync(function() {
-    noeAnnetAsync(function() {
-      noeTredjeAsync(function() {
-        noeFjerdeAsync(function() {
+  noeAsync(() => {
+    noeAnnetAsync(() => {
+      noeTredjeAsync(() => {
+        noeFjerdeAsync(() => {
           // Gjør noe gøy
         });
       });
@@ -242,19 +235,33 @@ class: middle
 # Promise
 
 ```
-  noeAsync().then(function() {
+  noeAsync().then(() => {
     // alt gikk bra
-  }).catch(function() {
+  }).catch(() => {
     // noe gikk feil
   });
 ```
+--
+
+```
+  noeAsync().then(() =>{
+    // alt gikk bra
+  }, () =>{
+    // noe gikk feil
+  });
+```
+
+???
+  Ikke anbefalt syntax, hvis noe feiler i den første funksjonen vil ikke den andre bli kalt
 
 --
 
 ```
   noeAsync()
     .then(noeAnnetAsync)
-    .then(noeTredjeAsync);
+    .then(noeTredjeAsync)
+    .then(noeFjerdeAsync)
+    .cache(taIMotFeilen);
 ```
 
 ---
@@ -275,7 +282,7 @@ class: middle
 # Promise
 
  ```
-  new Promise(function(resolve, reject) {
+  new Promise((resolve, reject) => {
     // Gjør noe spennende.
     // kall resolve hvis alt gikk bra
     // kall rejecte hvis noe feilet
@@ -291,7 +298,7 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
 ```
   function hentTall() {
     return new Promise(function(resolve, reject) {
-      setTimeout(function() {
+      setTimeout(() => {
         var tall = Math.random()
         tall > 0.5 ? resolve(tall) : reject(tall);
       }, 1000);
@@ -302,9 +309,9 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
 --
 
 ```
-  hentTall().then(function(tall) {
+  hentTall().then(tall => {
     // over 0.5
-  }).cache(function(tall) {
+  }).cache(tall => {
     // under 0.5
   });
 ```
@@ -314,7 +321,7 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
 # Promise
 
 ```
-    var jsonPromise = new Promise(function(resolve, reject) {
+    var jsonPromise = new Promise((resolve, reject) => {
       $.getJSON("some/endpoint").then(resolve, reject);
     });
 ```
@@ -323,7 +330,6 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
   konverter jquery deferred (eller andre implementasjoner) til es6 promises
 
 ---
-
 class: middle center
 
 # Class
@@ -479,6 +485,12 @@ class: cols two
   * [super i metoder](http://tddbin.com/#?kata=es6/language/class/super-in-method)
   * [super i constructor](http://tddbin.com/#?kata=es6/language/class/super-in-constructor)
 ]
+
+---
+
+class: center middle
+
+<a class="btn loud" href="../03/presentasjon.html">Neste</a>
 
     </textarea>
     <script src="../node_modules/remark-bekk/vendor/remark-0.11.0.min.js" type="text/javascript"></script>
