@@ -10,17 +10,19 @@
 
 class: front-page
 
-# Hva er nytt i ES6
+# ES6: fra lyntalemat til prosjekt
 
-## Miniseminaret 2015
+## Faggruppemøte Webteknologier
 
 Kent Andersen
 
 Erik Wendel
 
-17/10/2015
+26/08/2015
 
 ---
+
+exclude: true
 
 class: middle center
 
@@ -96,7 +98,7 @@ class: fullscreen
 
 ---
 
-class: middle center
+class: bottom center
 background-image: url(resources/variables.png)
 
 # Variabler
@@ -106,8 +108,8 @@ background-image: url(resources/variables.png)
 # Let
 
 ```
-  var x = true
-  let y = true
+  var x = true;
+  let y = true;
 
   x // true
   y // true
@@ -121,13 +123,13 @@ Funker nesten likt som var
 
 
 ```
-  if(true) {
+  if (true) {
     var x = true;
   }
 
   x // true
 
-  if(true) {
+  if (true) {
     let y = true;
   }
 
@@ -191,6 +193,8 @@ Men er block-scoped, ikke function-scoped
 
 ???
   Men du kan fortsatt endre innholdet
+  
+  Åpenbar verdi med let & const: kommuniserer til andre som leser koden hva som er meningen med en variabel
 
 ---
 
