@@ -12,6 +12,11 @@ class: center middle
 
 # Map
 
+???
+  ES6 har noen nye objekttype
+
+  Skal gjøre det lettere for kompilatoren å optimalisere koden
+
 ---
 
 
@@ -21,6 +26,11 @@ class: center middle
   let m = new Map();
 ```
 
+???
+  Fungerer på mange måter som et object
+
+  Alle key er unike
+
 --
 
 ```
@@ -28,7 +38,7 @@ class: center middle
     ["key1", "value1"],
     ["key2", "value2"],
     ["key3", "value3"]
-  ])
+  ]);
 ```
 
 --
@@ -36,6 +46,9 @@ class: center middle
 ```
   m.size // 3
 ```
+
+???
+  Istede for length har du et size parameter
 
 ---
 # Map
@@ -98,8 +111,6 @@ Alt kan være en key
 --
 
 ```
-  let arr = [];
-
   m.set([], "some value2");
   m.get([]); // undefined
 ```
@@ -201,6 +212,9 @@ ikke typed. Et Set kan inneholde verdier av forskjellig type
   s.add("some value");
   s.size; // 1
 ```
+
+???
+  også her har vi et size parameter
 
 --
 
