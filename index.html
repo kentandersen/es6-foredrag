@@ -251,6 +251,12 @@ class: middle center
 
 ---
 
+class: middle center
+
+# Template strings
+
+---
+
 # Template strings
 
 ```
@@ -273,7 +279,14 @@ class: middle center
 
 ---
 
+class: middle center
+
 # Default params
+
+---
+
+# Default params
+
 
 ```
   function hello(name) {
@@ -773,139 +786,6 @@ Note: på sikt kan åpner for bedre verktøy-støtte. Feks editorer kan med sikk
 
   // Disse to gjør akkurat det samme
 ```
-
----
-
-class: middle center
-
-# Arrow functions
-
----
-
-# Arrow functions
-
-```
-  [1,2,3].map(function(n) {
-    return n * 2;
-  });
-```
-
---
-
-```
-  [1,2,3].map(n => n * 2);
-```
-
----
-
-# Arrow functions
-
-```
-  [1,2,3].reduce(function(sum, value) {
-    return sum + value;
-  });
-```
-
---
-
-```
-  [1,2,3].reduce((sum, value) => sum + value);
-```
-
----
-
-# Arrow functions
-
-```
-  [1,2,3].map(() => 1);
-```
-
----
-
-# Arrow functions
-
-
-  et parameter
-
-```
-  a => a()
-```
-
-
-  flere parameter
-
-```
-  (a,b) => a+b
-```
-
-  ingen parameter
-
-```
-  () => a();
-```
-
-???
-  Siste resultat er automatisk returnert
-
----
-
-#Multiline arrow functions
-
-
-  et parameter
-
-```
-  let myFunc = a => {
-    let b = a();
-    return b;
-  }
-```
-
-  flere parameter
-
-```
-  let myFunc = (a,b) => {
-    let c = a+b;
-    return b;
-  }
-```
-
-  ingen parameter
-
-```
-  let myFunc = () => {
-    let b = a();
-    return b;
-  }
-```
-
-???
-  Må manuellt returnere
-
----
-
-#Arrow functions
-
-
-```
-  var that = this;
-
-  setTimeout(function() {
-    that.doSomething();
-    that.value = 4;
-  }, 1000);
-```
-
---
-
-```
-  setTimeout(() => {
-    this.doSomething();
-    this.value = 4;
-  }, 1000);
-```
-???
-  Context inne i en arrow function er det samme som der den blir deklarert
 
 ---
 
