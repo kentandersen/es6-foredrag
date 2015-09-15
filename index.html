@@ -148,16 +148,16 @@ Men er block-scoped, ikke function-scoped
 # Let
 
 ```
-function addListeners() {
+  function addListeners() {
     var listElements = $('li');
     var l = listElements.length;
 
     for (var i = 0 ; i < l ; i++) { // A
-        listElements[i].addEventListener('click', function (e) {
-            console.log(listElements[i].innerHTML); // B
-        });
+      listElements[i].addEventListener('click', function (e) {
+        console.log(listElements[i].innerHTML); // B
+      });
     }
-}
+  }
 ```
 
 ---
@@ -171,16 +171,16 @@ class: middle center
 # Let
 
 ```
-function addListeners() {
+  function addListeners() {
     var listElements = $('li');
     var l = listElements.length;
 
     for (let i = 0 ; i < l ; i++) { // A
-        listElements[i].addEventListener('click', function (e) {
-            console.log(listElements[i].innerHTML); // B
-        });
+      listElements[i].addEventListener('click', function (e) {
+        console.log(listElements[i].innerHTML); // B
+      });
     }
-}
+  }
 ```
 
 
@@ -230,10 +230,10 @@ function addListeners() {
 # Template strings
 
 ```
-const name = 'Kjell';
-const age = 36;
+  const name = 'Kjell';
+  const age = 36;
 
-const greeting = 'Hello, mister ' + name.toUpperCase() + '! You are ' + age + ' years old.
+  const greeting = 'Hello, mister ' + name.toUpperCase() + '! You are ' + age + ' years old.
 ```
 
 ---
@@ -241,10 +241,10 @@ const greeting = 'Hello, mister ' + name.toUpperCase() + '! You are ' + age + ' 
 # Template strings
 
 ```
-const name = 'Kjell';
-const age = 36;
+  const name = 'Kjell';
+  const age = 36;
 
-const greeting = `Hello, mister ${name.toUpperCase()}! You are ${age} years old.
+  const greeting = `Hello, mister ${name.toUpperCase()}! You are ${age} years old.
 ```
 
 ---
@@ -252,40 +252,34 @@ const greeting = `Hello, mister ${name.toUpperCase()}! You are ${age} years old.
 # Default params
 
 ```
-function hello(name) {
+  function hello(name) {
     return `Hello ${name}!`;
-}
+  }
 ```
 
----
-
-# Default params
+--
 
 ```
-function hello(name) {
+  function hello(name) {
     name = name || 'world';
     return `Hello ${name}!`;
-}
+  }
 ```
 
----
-
-# Default params
+--
 
 ```
-function hello(name) {
+  function hello(name) {
     return `Hello ${name || 'world'}!`;
-}
+  }
 ```
 
----
-
-# Default params
+--
 
 ```
-function hello(name = 'world') {
+  function hello(name = 'world') {
     return `Hello ${name}!`;
-}
+  }
 ```
 
 
@@ -294,9 +288,9 @@ function hello(name = 'world') {
 # Default params
 
 ```
-function importantFunction(required = throwError()) {
-  
-}
+  function importantFunction(required = throwError()) {
+
+  }
 ```
 
 ---
@@ -633,31 +627,15 @@ class: middle center
 # Arrow functions
 
 ```
-[1,2,3].map(function(n) {
+  [1,2,3].map(function(n) {
     return n * 2;
-});
+  });
 ```
 
 --
 
 ```
-[1,2,3].map(n => n * 2);
-```
-
----
-
-# Arrow function
-
-```
-[1,2,3].reduce(function(sum, value) {
-  return sum + value;
-});
-```
-
---
-
-```
-[1,2,3].reduce((sum, value) => sum + value);
+  [1,2,3].map(n => n * 2);
 ```
 
 ---
@@ -665,7 +643,23 @@ class: middle center
 # Arrow functions
 
 ```
-[1,2,3].map(() => 1);
+  [1,2,3].reduce(function(sum, value) {
+    return sum + value;
+  });
+```
+
+--
+
+```
+  [1,2,3].reduce((sum, value) => sum + value);
+```
+
+---
+
+# Arrow functions
+
+```
+  [1,2,3].map(() => 1);
 ```
 
 ---
@@ -736,21 +730,21 @@ class: middle center
 
 
 ```
-var that = this;
+  var that = this;
 
-setTimeout(function() {
+  setTimeout(function() {
     that.doSomething();
     that.value = 4;
-}, 1000);
+  }, 1000);
 ```
 
 --
 
 ```
-setTimeout(() => {
+  setTimeout(() => {
     this.doSomething();
     this.value = 4;
-}, 1000);
+  }, 1000);
 ```
 ???
   Context inne i en arrow function er det samme som der den blir deklarert
@@ -865,8 +859,6 @@ class: middle
 
 # Promise
 
-Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
-
 ```
   function hentTall() {
     return new Promise(function(resolve, reject) {
@@ -877,6 +869,8 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
     });
   }
 ```
+
+Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
 
 --
 
