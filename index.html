@@ -215,7 +215,7 @@ class: middle center
 
 ```
   const x = 'I am a const';
-  x = 'Cant change you?'; // SyntaxError: "constString" is read-only
+  x = 'Cant change you?'; // SyntaxError: 'constString' is read-only
 ```
 
 ???
@@ -527,7 +527,7 @@ class: middle center
 
   ## Objekter
 ```
-  let {a=1} = {b:"ball"}
+  let {a=1} = {b:'ball'}
 
   a // 1
 
@@ -535,7 +535,7 @@ class: middle center
 --
 
 ```
-  let {a:alder=1} = {b:"ball"}
+  let {a:alder=1} = {b:'ball'}
 
   alder // 1
 ```
@@ -904,7 +904,7 @@ exclude:true
 class: middle
 
 
-  <blockquote style="font-size: 2em">
+  <blockquote style='font-size: 2em'>
     The Promise object is used for deferred and asynchronous computations. A Promise represents an operation that hasn't completed yet, but is expected in the future.
   </blockquote>
 
@@ -1035,11 +1035,11 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
     setTimeout(resolve, 2000);
   })
   .then(
-    () => {throw "up"},
-    error => console.log("then", error)
+    () => {throw 'up'},
+    error => console.log('then', error)
   )
   .catch(
-    error => console.log("catch", error)
+    error => console.log('catch', error)
   );
 ```
 
@@ -1058,13 +1058,13 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
     setTimeout(resolve, 2000);
   })
   .then(
-    () => {throw "up"},
-    error => console.log("then", error)
+    () => {throw 'up'},
+    error => console.log('then', error)
   )
   .catch(
     error => {
-      console.log("catch", error);
-      throw "again???";
+      console.log('catch', error);
+      throw 'again???';
     }
   );
 ```
@@ -1083,7 +1083,7 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
 
 ```
     var jsonPromise = new Promise((resolve, reject) => {
-      $.getJSON("some/endpoint").then(resolve, reject);
+      $.getJSON('some/endpoint').then(resolve, reject);
     });
 ```
 
@@ -1278,9 +1278,9 @@ class: center middle
 
 ```
   let m = new Map([
-    ["key1", "value1"],
-    ["key2", "value2"],
-    ["key3", "value3"]
+    ['key1', 'value1'],
+    ['key2', 'value2'],
+    ['key3', 'value3']
   ]);
 ```
 
@@ -1297,13 +1297,13 @@ class: center middle
 # Map
 
 ```
-  m.set("key", "value");
+  m.set('key', 'value');
 ```
 
 --
 
 ```
-  m.get("key"); // "value"
+  m.get('key'); // 'value'
   m.key         // undefined
 ```
 
@@ -1313,13 +1313,13 @@ Har getter / setter ikke dot-notasjon
 --
 
 ```
-  m.set("key2", {otherKey: "value"})
+  m.set('key2', {otherKey: 'value'})
   m.key2.otherValue // Cannot read property 'otherValue' of undefined
 ```
 --
 
 ```
-  m.get("key").otherValye // "value"
+  m.get('key').otherValye // 'value'
 ```
 
 ???
@@ -1333,21 +1333,21 @@ Begrenset støtte for nøsting
   let obj = {};
   let m = new Map();
 
-  m.set(obj, "some value");
+  m.set(obj, 'some value');
 ```
 
 --
 
 ```
-  m.get(obj); // "some value"
+  m.get(obj); // 'some value'
 ```
 --
 
 ```
   let arr = [];
 
-  m.set(arr, "some value2");
-  m.get(arr); // "some value2"
+  m.set(arr, 'some value2');
+  m.get(arr); // 'some value2'
 ```
 ???
 Alt kan være en key
@@ -1355,7 +1355,7 @@ Alt kan være en key
 --
 
 ```
-  m.set([], "some value2");
+  m.set([], 'some value2');
   m.get([]); // undefined
 ```
 
@@ -1369,11 +1369,11 @@ Må være en gyldig peker eller en primitiv
 ```
   let m = new Map();
 
-  m.set("key", "value1");
-  m.set("key", "value2");
-  m.set("key", "value3");
+  m.set('key', 'value1');
+  m.set('key', 'value2');
+  m.set('key', 'value3');
 
-  m.get("key"); // value3
+  m.get('key'); // value3
 ```
 
 --
@@ -1390,11 +1390,11 @@ Map er også unikt
 
 ```
   let m = new Map([
-    ["key", "value"]
+    ['key', 'value']
   ]);
 
-  m.delete("key");
-  m.get("key"); // undefined
+  m.delete('key');
+  m.get('key'); // undefined
 ```
 
 --
@@ -1433,9 +1433,9 @@ class: center middle
 
 ```
   let s = new Set([
-    "value1",
-    "value2",
-    "value3"
+    'value1',
+    'value2',
+    'value3'
   ]);
 ```
 
@@ -1449,7 +1449,7 @@ ikke typed. Et Set kan inneholde verdier av forskjellig type
 ```
   let s = new Set();
 
-  s.add("some value");
+  s.add('some value');
   s.size; // 1
 ```
 
@@ -1459,21 +1459,21 @@ ikke typed. Et Set kan inneholde verdier av forskjellig type
 --
 
 ```
-  s.has("some value"); // true
+  s.has('some value'); // true
 ```
 
 --
 
 ```
-  s.add("some value");
-  s.add("some value");
+  s.add('some value');
+  s.add('some value');
   s.size; // 1
 ```
 
 --
 
 ```
-  s.delete("some value");
+  s.delete('some value');
 ```
 
 --
