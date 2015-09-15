@@ -899,7 +899,7 @@ class: middle center
 # Promise
 
 ---
-exclude:true
+exclude: true
 class: middle
 
 
@@ -1249,7 +1249,7 @@ class: cols two
 
 
 ---
-
+exclude: true
 class: center middle
 
 # Map
@@ -1260,7 +1260,7 @@ class: center middle
   Skal gjøre det lettere for kompilatoren å optimalisere koden
 
 ---
-
+exclude: true
 
 # Map
 
@@ -1274,6 +1274,7 @@ class: center middle
   Alle key er unike
 
 --
+exclude: true
 
 ```
   let m = new Map([
@@ -1284,6 +1285,7 @@ class: center middle
 ```
 
 --
+exclude: true
 
 ```
   m.size // 3
@@ -1293,6 +1295,7 @@ class: center middle
   Istede for length har du et size parameter
 
 ---
+exclude: true
 # Map
 
 ```
@@ -1300,6 +1303,7 @@ class: center middle
 ```
 
 --
+exclude: true
 
 ```
   m.get('key'); // 'value'
@@ -1310,12 +1314,14 @@ class: center middle
 Har getter / setter ikke dot-notasjon
 
 --
+exclude: true
 
 ```
   m.set('key2', {otherKey: 'value'})
   m.key2.otherValue // Cannot read property 'otherValue' of undefined
 ```
 --
+exclude: true
 
 ```
   m.get('key').otherValye // 'value'
@@ -1325,6 +1331,7 @@ Har getter / setter ikke dot-notasjon
 Begrenset støtte for nøsting
 
 ---
+exclude: true
 
 # Map
 
@@ -1336,11 +1343,13 @@ Begrenset støtte for nøsting
 ```
 
 --
+exclude: true
 
 ```
   m.get(obj); // 'some value'
 ```
 --
+exclude: true
 
 ```
   let arr = [];
@@ -1352,6 +1361,7 @@ Begrenset støtte for nøsting
 Alt kan være en key
 
 --
+exclude: true
 
 ```
   m.set([], 'some value2');
@@ -1362,6 +1372,7 @@ Alt kan være en key
 Må være en gyldig peker eller en primitiv
 
 ---
+exclude: true
 
 # Map
 
@@ -1376,14 +1387,13 @@ Må være en gyldig peker eller en primitiv
 ```
 
 --
-
-
+exclude: true
 
 ???
 Map er også unikt
 
 ---
-
+exclude: true
 
 # Map
 
@@ -1397,6 +1407,7 @@ Map er også unikt
 ```
 
 --
+exclude: true
 
 ```
   m.forEach(function(value, key, map) {
@@ -1414,13 +1425,14 @@ Map er også unikt
 
 
 ---
-
+exclude: true
 
 class: center middle
 
 # Set
 
 ---
+exclude: true
 
 # Set
 
@@ -1429,6 +1441,7 @@ class: center middle
 ```
 
 --
+exclude: true
 
 ```
   let s = new Set([
@@ -1442,6 +1455,7 @@ class: center middle
 ikke typed. Et Set kan inneholde verdier av forskjellig type
 
 ---
+exclude: true
 
 # Set
 
@@ -1456,12 +1470,14 @@ ikke typed. Et Set kan inneholde verdier av forskjellig type
   også her har vi et size parameter
 
 --
+exclude: true
 
 ```
   s.has('some value'); // true
 ```
 
 --
+exclude: true
 
 ```
   s.add('some value');
@@ -1470,12 +1486,14 @@ ikke typed. Et Set kan inneholde verdier av forskjellig type
 ```
 
 --
+exclude: true
 
 ```
   s.delete('some value');
 ```
 
 --
+exclude: true
 
 ```
   s.forEach(function(value, value, set) {
