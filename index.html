@@ -624,15 +624,53 @@ Note: på sikt kan åpner for bedre verktøy-støtte. Feks editorer kan med sikk
 
 ---
 
-
 class: middle center
 
 # Arrow functions
 
+---
+
+# Arrow functions
+
+```
+[1,2,3].map(function(n) {
+    return n * 2;
+});
+```
+
+--
+
+```
+[1,2,3].map(n => n * 2);
+```
 
 ---
 
-#Inline arrow functions
+# Arrow function
+
+```
+[1,2,3].reduce(function(sum, value) {
+  return sum + value;
+});
+```
+
+--
+
+```
+[1,2,3].reduce((sum, value) => sum + value);
+```
+
+---
+
+# Arrow functions
+
+```
+[1,2,3].map(() => 1);
+```
+
+---
+
+# Arrow functions
 
 
   et parameter
@@ -665,7 +703,7 @@ class: middle center
   et parameter
 
 ```
-  a => {
+  let myFunc = a => {
     let b = a();
     return b;
   }
@@ -674,7 +712,7 @@ class: middle center
   flere parameter
 
 ```
-  (a,b) => {
+  let myFunc = (a,b) => {
     let c = a+b;
     return b;
   }
@@ -683,7 +721,7 @@ class: middle center
   ingen parameter
 
 ```
-  () => {
+  let myFunc = () => {
     let b = a();
     return b;
   }
@@ -698,11 +736,21 @@ class: middle center
 
 
 ```
-  var outerContext = this;
+var that = this;
 
-  () => {
-    this === outerContext; // true
-  }
+setTimeout(function() {
+    that.doSomething();
+    that.value = 4;
+}, 1000);
+```
+
+--
+
+```
+setTimeout(() => {
+    this.doSomething();
+    this.value = 4;
+}, 1000);
 ```
 ???
   Context inne i en arrow function er det samme som der den blir deklarert
