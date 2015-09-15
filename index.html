@@ -10,9 +10,8 @@
 
 class: front-page
 
-![50%](resources/js.png)
+<img src="resources/js.png" style="margin-bottom: 70px" />
 
-<br/>
 
 # Fremtidens JavaScript: ES6
 
@@ -330,7 +329,7 @@ class: middle center
 
 ```
   [1,2,3].map(function(n) {
-      return n * 2;
+    return n * 2;
   });
 ```
 
@@ -434,8 +433,8 @@ class: middle center
   var that = this;
 
   setTimeout(function() {
-      that.doSomething();
-      that.value = 4;
+    that.doSomething();
+    that.value = 4;
   }, 1000);
 ```
 
@@ -443,8 +442,8 @@ class: middle center
 
 ```
   setTimeout(() => {
-      this.doSomething();
-      this.value = 4;
+    this.doSomething();
+    this.value = 4;
   }, 1000);
 ```
 ???
@@ -534,9 +533,9 @@ class: middle center
   ## Arrays
 
 ```
-    let [a=1] = [];
+  let [a=1] = [];
 
-    a // 1
+  a // 1
 ```
 --
 
@@ -915,7 +914,7 @@ class: middle center
 # Promise
 
 ---
-exclude:true
+exclude: true
 class: middle
 
 
@@ -1265,7 +1264,7 @@ class: cols two
 
 
 ---
-
+exclude: true
 class: center middle
 
 # Map
@@ -1276,7 +1275,7 @@ class: center middle
   Skal gjøre det lettere for kompilatoren å optimalisere koden
 
 ---
-
+exclude: true
 
 # Map
 
@@ -1290,6 +1289,7 @@ class: center middle
   Alle key er unike
 
 --
+exclude: true
 
 ```
   let m = new Map([
@@ -1300,6 +1300,7 @@ class: center middle
 ```
 
 --
+exclude: true
 
 ```
   m.size // 3
@@ -1309,6 +1310,7 @@ class: center middle
   Istede for length har du et size parameter
 
 ---
+exclude: true
 # Map
 
 ```
@@ -1316,6 +1318,7 @@ class: center middle
 ```
 
 --
+exclude: true
 
 ```
   m.get('key'); // 'value'
@@ -1326,12 +1329,14 @@ class: center middle
 Har getter / setter ikke dot-notasjon
 
 --
+exclude: true
 
 ```
   m.set('key2', {otherKey: 'value'})
   m.key2.otherValue // Cannot read property 'otherValue' of undefined
 ```
 --
+exclude: true
 
 ```
   m.get('key').otherValye // 'value'
@@ -1341,6 +1346,7 @@ Har getter / setter ikke dot-notasjon
 Begrenset støtte for nøsting
 
 ---
+exclude: true
 
 # Map
 
@@ -1352,11 +1358,13 @@ Begrenset støtte for nøsting
 ```
 
 --
+exclude: true
 
 ```
   m.get(obj); // 'some value'
 ```
 --
+exclude: true
 
 ```
   let arr = [];
@@ -1368,6 +1376,7 @@ Begrenset støtte for nøsting
 Alt kan være en key
 
 --
+exclude: true
 
 ```
   m.set([], 'some value2');
@@ -1378,6 +1387,7 @@ Alt kan være en key
 Må være en gyldig peker eller en primitiv
 
 ---
+exclude: true
 
 # Map
 
@@ -1392,14 +1402,13 @@ Må være en gyldig peker eller en primitiv
 ```
 
 --
-
-
+exclude: true
 
 ???
 Map er også unikt
 
 ---
-
+exclude: true
 
 # Map
 
@@ -1413,6 +1422,7 @@ Map er også unikt
 ```
 
 --
+exclude: true
 
 ```
   m.forEach(function(value, key, map) {
@@ -1430,13 +1440,14 @@ Map er også unikt
 
 
 ---
-
+exclude: true
 
 class: center middle
 
 # Set
 
 ---
+exclude: true
 
 # Set
 
@@ -1445,6 +1456,7 @@ class: center middle
 ```
 
 --
+exclude: true
 
 ```
   let s = new Set([
@@ -1458,6 +1470,7 @@ class: center middle
 ikke typed. Et Set kan inneholde verdier av forskjellig type
 
 ---
+exclude: true
 
 # Set
 
@@ -1472,12 +1485,14 @@ ikke typed. Et Set kan inneholde verdier av forskjellig type
   også her har vi et size parameter
 
 --
+exclude: true
 
 ```
   s.has('some value'); // true
 ```
 
 --
+exclude: true
 
 ```
   s.add('some value');
@@ -1486,12 +1501,14 @@ ikke typed. Et Set kan inneholde verdier av forskjellig type
 ```
 
 --
+exclude: true
 
 ```
   s.delete('some value');
 ```
 
 --
+exclude: true
 
 ```
   s.forEach(function(value, value, set) {
@@ -1568,6 +1585,14 @@ class: fullscreen
 
 <iframe src="https://babeljs.io/repl/" style="width:100%; height:100%">
 
+---
+
+#Les mer
+* [Exploring ES6 av Axel Rauschmeyer](http://exploringjs.com/)
+
+* [JavaZone 2015: The close future of JavaScript av Christian Johansen](https://vimeo.com/138956041)
+
+* [ES6katas](http://es6katas.org)
 
 ---
 
