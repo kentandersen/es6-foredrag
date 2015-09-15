@@ -93,6 +93,12 @@ ECMAScript 5:
 
 class: middle center
 
+![](resources/ecma262.png)
+
+---
+
+class: middle center
+
 # Variabler
 
 ---
@@ -153,14 +159,14 @@ Men er block-scoped, ikke function-scoped
 
 ```
 function addListeners() {
-    var listElements = $('li');
-    var l = listElements.length;
+  var listElements = $('li');
+  var l = listElements.length;
 
-    for (var i = 0 ; i < l ; i++) { // A
-        listElements[i].addEventListener('click', function (e) {
-            console.log(listElements[i].innerHTML); // B
-        });
-    }
+  for (var i = 0 ; i < l ; i++) { // A
+    listElements[i].addEventListener('click', function (e) {
+      console.log(listElements[i].innerHTML); // B
+    });
+  }
 }
 ```
 
@@ -176,14 +182,14 @@ class: middle center
 
 ```
 function addListeners() {
-    var listElements = $('li');
-    var l = listElements.length;
+  var listElements = $('li');
+  var l = listElements.length;
 
-    for (let i = 0 ; i < l ; i++) { // A
-        listElements[i].addEventListener('click', function (e) {
-            console.log(listElements[i].innerHTML); // B
-        });
-    }
+  for (let i = 0 ; i < l ; i++) { // A
+      listElements[i].addEventListener('click', function (e) {
+          console.log(listElements[i].innerHTML); // B
+      });
+  }
 }
 ```
 
@@ -234,10 +240,10 @@ function addListeners() {
 # Template strings
 
 ```
-const name = 'Kjell';
-const age = 36;
+  const name = 'Kjell';
+  const age = 36;
 
-const greeting = 'Hello, mister ' + name.toUpperCase() + '! You are ' + age + ' years old.
+  const greeting = 'Hello, mister ' + name.toUpperCase() + '! You are ' + age + ' years old.
 ```
 
 ---
@@ -245,10 +251,10 @@ const greeting = 'Hello, mister ' + name.toUpperCase() + '! You are ' + age + ' 
 # Template strings
 
 ```
-const name = 'Kjell';
-const age = 36;
+  const name = 'Kjell';
+  const age = 36;
 
-const greeting = `Hello, mister ${name.toUpperCase()}! You are ${age} years old.
+  const greeting = `Hello, mister ${name.toUpperCase()}! You are ${age} years old.
 ```
 
 ---
@@ -256,9 +262,9 @@ const greeting = `Hello, mister ${name.toUpperCase()}! You are ${age} years old.
 # Default params
 
 ```
-function hello(name) {
+  function hello(name) {
     return `Hello ${name}!`;
-}
+  }
 ```
 
 ---
@@ -266,10 +272,10 @@ function hello(name) {
 # Default params
 
 ```
-function hello(name) {
+  function hello(name) {
     name = name || 'world';
     return `Hello ${name}!`;
-}
+  }
 ```
 
 ---
@@ -277,9 +283,9 @@ function hello(name) {
 # Default params
 
 ```
-function hello(name) {
+  function hello(name) {
     return `Hello ${name || 'world'}!`;
-}
+  }
 ```
 
 ---
@@ -287,9 +293,9 @@ function hello(name) {
 # Default params
 
 ```
-function hello(name = 'world') {
+  function hello(name = 'world') {
     return `Hello ${name}!`;
-}
+  }
 ```
 
 
@@ -298,12 +304,146 @@ function hello(name = 'world') {
 # Default params
 
 ```
-function importantFunction(required = throwError()) {
-  
-}
+  function importantFunction(required = throwError()) {
+    
+  }
 ```
 
 ---
+
+class: middle center
+
+# Arrow functions
+
+---
+
+# Arrow functions
+
+```
+  [1,2,3].map(function(n) {
+      return n * 2;
+  });
+```
+
+--
+
+```
+  [1,2,3].map(n => n * 2);
+```
+
+---
+
+# Arrow functions
+
+```
+  [1,2,3].reduce(function(sum, value) {
+    return sum + value;
+  });
+```
+
+--
+
+```
+  [1,2,3].reduce((sum, value) => sum + value);
+```
+
+---
+
+# Arrow functions
+
+```
+  [1,2,3].map(() => 1);
+```
+
+---
+
+# Arrow functions
+
+
+  et parameter
+
+```
+  a => a()
+```
+
+
+  flere parameter
+
+```
+  (a,b) => a+b
+```
+
+  ingen parameter
+
+```
+  () => a();
+```
+
+???
+  Siste resultat er automatisk returnert
+
+---
+
+# Multiline arrow functions
+
+
+```
+  // et parameter
+  let myFunc = a => { 
+    let b = a();
+    return b;
+  }
+```
+
+
+```
+  // flere parameter
+  let myFunc = (a,b) => { 
+    let c = a+b;
+    return b;
+  }
+```
+
+
+```
+  // ingen parameter
+  let myFunc = () => { 
+    let b = a();
+    return b;
+  }
+```
+
+???
+  Må manuellt returnere
+
+---
+
+#Arrow functions
+
+
+```
+  var that = this;
+
+  setTimeout(function() {
+      that.doSomething();
+      that.value = 4;
+  }, 1000);
+```
+
+--
+
+```
+  setTimeout(() => {
+      this.doSomething();
+      this.value = 4;
+  }, 1000);
+```
+???
+  Context inne i en arrow function er det samme som der den blir deklarert
+
+---
+
+
 
 class: middle center
 
@@ -625,139 +765,6 @@ Note: på sikt kan åpner for bedre verktøy-støtte. Feks editorer kan med sikk
 
   // Disse to gjør akkurat det samme
 ```
-
----
-
-class: middle center
-
-# Arrow functions
-
----
-
-# Arrow functions
-
-```
-[1,2,3].map(function(n) {
-    return n * 2;
-});
-```
-
---
-
-```
-[1,2,3].map(n => n * 2);
-```
-
----
-
-# Arrow function
-
-```
-[1,2,3].reduce(function(sum, value) {
-  return sum + value;
-});
-```
-
---
-
-```
-[1,2,3].reduce((sum, value) => sum + value);
-```
-
----
-
-# Arrow functions
-
-```
-[1,2,3].map(() => 1);
-```
-
----
-
-# Arrow functions
-
-
-  et parameter
-
-```
-  a => a()
-```
-
-
-  flere parameter
-
-```
-  (a,b) => a+b
-```
-
-  ingen parameter
-
-```
-  () => a();
-```
-
-???
-  Siste resultat er automatisk returnert
-
----
-
-#Multiline arrow functions
-
-
-  et parameter
-
-```
-  let myFunc = a => {
-    let b = a();
-    return b;
-  }
-```
-
-  flere parameter
-
-```
-  let myFunc = (a,b) => {
-    let c = a+b;
-    return b;
-  }
-```
-
-  ingen parameter
-
-```
-  let myFunc = () => {
-    let b = a();
-    return b;
-  }
-```
-
-???
-  Må manuellt returnere
-
----
-
-#Arrow functions
-
-
-```
-var that = this;
-
-setTimeout(function() {
-    that.doSomething();
-    that.value = 4;
-}, 1000);
-```
-
---
-
-```
-setTimeout(() => {
-    this.doSomething();
-    this.value = 4;
-}, 1000);
-```
-???
-  Context inne i en arrow function er det samme som der den blir deklarert
 
 ---
 
