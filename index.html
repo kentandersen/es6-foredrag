@@ -554,7 +554,8 @@ class: middle center
 
   ## Objekter
 ```
-  let {a=1} = {b:'ball'}
+  let {a=1} = {b:'ball'};
+
 
   a // 1
 
@@ -562,7 +563,8 @@ class: middle center
 --
 
 ```
-  let {a:alder=1} = {b:'ball'}
+  let {a:alder=1} = {b:'ball'};
+
 
   alder // 1
 ```
@@ -1065,11 +1067,11 @@ Ikke ordentlig klasser, bare syntax-sukker oppå prototype
     constructor(id) {}
 
     get age() {
-      return this.age
+      return this.age;
     }
 
     set age(age) {
-      this.age = age
+      this.age = age;
     }
   }
 ```
