@@ -10,9 +10,7 @@
 
 class: front-page
 
-# ES6: fra lyntalemat til prosjekt
-
-## Miniseminaret 2015
+# Fremtidens JavaScript: ES6
 
 Kent Andersen
 
@@ -53,48 +51,39 @@ class: middle center
 
 class: middle center
 
+## ES6?!
 
-![Nettleserstatistikk](resources/browsers-all.png)
-
-
-.source[http://tech.finn.no/2015/06/25/browser-statistics-june-2015/]
-
---
-
-<div class="circle red" style="position:absolute; right: 3em; margin-top: -6em;">88%/12%</div>
-
-???
-
-88% er på nyeste versjon
-
-
----
-class: middle center
-
-![Nettleserstøtte for ES6](resources/browser-support.png)
-
-???
-
-* mye rødt, selv fra de nyeste / beste nettleserene
-* legg merke til Safari, støtter nesten ingenting
 
 ---
 
 class: middle center
 
-![Nettleserstøtte for ES6 med polyfill](resources/browser-support-polyfill.png)
-
-???
-
-* Polyfill gjør det mulig å bruke es6 i dag
-* kompelerer fra ES6 til ES5
+![](resources/ecma262.png)
 
 ---
 
-class: fullscreen
+class: middle center
+
+![](resources/ie5.png)
 
 
-<iframe src="https://babeljs.io/repl/" style="width:100%; height:100%">
+???
+I år 199x skjedde det noe: IE5 ble sluppet.
+Og med det hadde de praktisk talt 100% av browsermarkedet.
+Derfor mistet de alt insentiv til å videreutvikle standarden.
+
+---
+
+class: middle center
+
+# 2009
+
+ECMAScript 5:
+
+##### Array.prototype.map
+##### Array.prototype.filter
+##### Array.prototype.reduce
+##### Function.prototype.bind
 
 ---
 
@@ -156,6 +145,47 @@ Men er block-scoped, ikke function-scoped
 
 ---
 
+# Let
+
+```
+function addListeners() {
+    var listElements = $('li');
+    var l = listElements.length;
+
+    for (var i = 0 ; i < l ; i++) { // A
+        listElements[i].addEventListener('click', function (e) {
+            console.log(listElements[i].innerHTML); // B
+        });
+    }
+}
+```
+
+---
+
+class: middle center
+
+![](resources/undefined.png)
+
+---
+
+# Let
+
+```
+function addListeners() {
+    var listElements = $('li');
+    var l = listElements.length;
+
+    for (let i = 0 ; i < l ; i++) { // A
+        listElements[i].addEventListener('click', function (e) {
+            console.log(listElements[i].innerHTML); // B
+        });
+    }
+}
+```
+
+
+---
+
 # Const
 
 
@@ -194,6 +224,80 @@ Men er block-scoped, ikke function-scoped
   Men du kan fortsatt endre innholdet
 
   Åpenbar verdi med let & const: kommuniserer til andre som leser koden hva som er meningen med en variabel
+
+---
+
+# Template strings
+
+```
+const name = 'Kjell';
+const age = 36;
+
+const greeting = 'Hello, mister ' + name.toUpperCase() + '! You are ' + age + ' years old.
+```
+
+---
+
+# Template strings
+
+```
+const name = 'Kjell';
+const age = 36;
+
+const greeting = `Hello, mister ${name.toUpperCase()}! You are ${age} years old.
+```
+
+---
+
+# Default params
+
+```
+function hello(name) {
+    return `Hello ${name}!`;
+}
+```
+
+---
+
+# Default params
+
+```
+function hello(name) {
+    name = name || 'world';
+    return `Hello ${name}!`;
+}
+```
+
+---
+
+# Default params
+
+```
+function hello(name) {
+    return `Hello ${name || 'world'}!`;
+}
+```
+
+---
+
+# Default params
+
+```
+function hello(name = 'world') {
+    return `Hello ${name}!`;
+}
+```
+
+
+---
+
+# Default params
+
+```
+function importantFunction(required = throwError()) {
+  
+}
+```
 
 ---
 
@@ -1164,6 +1268,53 @@ exclude: true
 * [set.delete()](http://tddbin.com/#?kata=es6/language/set/delete)
 * [the API](http://tddbin.com/#?kata=es6/language/set/api)
 * [set.clear()](http://tddbin.com/#?kata=es6/language/set/clear)
+
+---
+
+class: middle center
+
+
+![Nettleserstatistikk](resources/browsers-all.png)
+
+
+.source[http://tech.finn.no/2015/06/25/browser-statistics-june-2015/]
+
+--
+
+<div class="circle red" style="position:absolute; right: 3em; margin-top: -6em;">88%/12%</div>
+
+???
+
+88% er på nyeste versjon
+
+
+---
+class: middle center
+
+![Nettleserstøtte for ES6](resources/browser-support.png)
+
+???
+
+* mye rødt, selv fra de nyeste / beste nettleserene
+* legg merke til Safari, støtter nesten ingenting
+
+---
+
+class: middle center
+
+![Nettleserstøtte for ES6 med polyfill](resources/browser-support-polyfill.png)
+
+???
+
+* Polyfill gjør det mulig å bruke es6 i dag
+* kompelerer fra ES6 til ES5
+
+---
+
+class: fullscreen
+
+
+<iframe src="https://babeljs.io/repl/" style="width:100%; height:100%">
 
 
 ---
