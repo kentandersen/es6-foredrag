@@ -158,16 +158,16 @@ Men er block-scoped, ikke function-scoped
 # Let
 
 ```
-function addListeners() {
-  var listElements = $('li');
-  var l = listElements.length;
+  function addListeners() {
+    var listElements = $('li');
+    var l = listElements.length;
 
-  for (var i = 0 ; i < l ; i++) { // A
-    listElements[i].addEventListener('click', function (e) {
-      console.log(listElements[i].innerHTML); // B
-    });
+    for (var i = 0 ; i < l ; i++) { // A
+      listElements[i].addEventListener('click', function (e) {
+        console.log(listElements[i].innerHTML); // B
+      });
+    }
   }
-}
 ```
 
 ---
@@ -181,16 +181,16 @@ class: middle center
 # Let
 
 ```
-function addListeners() {
-  var listElements = $('li');
-  var l = listElements.length;
+  function addListeners() {
+    var listElements = $('li');
+    var l = listElements.length;
 
-  for (let i = 0 ; i < l ; i++) { // A
+    for (let i = 0 ; i < l ; i++) { // A
       listElements[i].addEventListener('click', function (e) {
-          console.log(listElements[i].innerHTML); // B
+        console.log(listElements[i].innerHTML); // B
       });
+    }
   }
-}
 ```
 
 
@@ -267,9 +267,7 @@ function addListeners() {
   }
 ```
 
----
-
-# Default params
+--
 
 ```
   function hello(name) {
@@ -278,9 +276,7 @@ function addListeners() {
   }
 ```
 
----
-
-# Default params
+--
 
 ```
   function hello(name) {
@@ -288,9 +284,7 @@ function addListeners() {
   }
 ```
 
----
-
-# Default params
+--
 
 ```
   function hello(name = 'world') {
@@ -305,7 +299,7 @@ function addListeners() {
 
 ```
   function importantFunction(required = throwError()) {
-    
+
   }
 ```
 
@@ -770,6 +764,139 @@ Note: på sikt kan åpner for bedre verktøy-støtte. Feks editorer kan med sikk
 
 class: middle center
 
+# Arrow functions
+
+---
+
+# Arrow functions
+
+```
+  [1,2,3].map(function(n) {
+    return n * 2;
+  });
+```
+
+--
+
+```
+  [1,2,3].map(n => n * 2);
+```
+
+---
+
+# Arrow functions
+
+```
+  [1,2,3].reduce(function(sum, value) {
+    return sum + value;
+  });
+```
+
+--
+
+```
+  [1,2,3].reduce((sum, value) => sum + value);
+```
+
+---
+
+# Arrow functions
+
+```
+  [1,2,3].map(() => 1);
+```
+
+---
+
+# Arrow functions
+
+
+  et parameter
+
+```
+  a => a()
+```
+
+
+  flere parameter
+
+```
+  (a,b) => a+b
+```
+
+  ingen parameter
+
+```
+  () => a();
+```
+
+???
+  Siste resultat er automatisk returnert
+
+---
+
+#Multiline arrow functions
+
+
+  et parameter
+
+```
+  let myFunc = a => {
+    let b = a();
+    return b;
+  }
+```
+
+  flere parameter
+
+```
+  let myFunc = (a,b) => {
+    let c = a+b;
+    return b;
+  }
+```
+
+  ingen parameter
+
+```
+  let myFunc = () => {
+    let b = a();
+    return b;
+  }
+```
+
+???
+  Må manuellt returnere
+
+---
+
+#Arrow functions
+
+
+```
+  var that = this;
+
+  setTimeout(function() {
+    that.doSomething();
+    that.value = 4;
+  }, 1000);
+```
+
+--
+
+```
+  setTimeout(() => {
+    this.doSomething();
+    this.value = 4;
+  }, 1000);
+```
+???
+  Context inne i en arrow function er det samme som der den blir deklarert
+
+---
+
+class: middle center
+
 # Promise
 
 ---
@@ -876,8 +1003,6 @@ class: middle
 
 # Promise
 
-Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
-
 ```
   function hentTall() {
     return new Promise(function(resolve, reject) {
@@ -888,6 +1013,8 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
     });
   }
 ```
+
+Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
 
 --
 
@@ -900,6 +1027,57 @@ Hent et tilfelldig tall om 1. sekund, reject om det er under 0,5
 ```
 
 ---
+
+# Promise
+
+```
+  new Promise((resolve, reject) => {
+    setTimeout(resolve, 2000);
+  })
+  .then(
+    () => {throw "up"},
+    error => console.log("then", error)
+  )
+  .catch(
+    error => console.log("catch", error)
+  );
+```
+
+--
+
+```
+  // catch up
+```
+
+---
+
+# Promise
+
+```
+  new Promise((resolve, reject) => {
+    setTimeout(resolve, 2000);
+  })
+  .then(
+    () => {throw "up"},
+    error => console.log("then", error)
+  )
+  .catch(
+    error => {
+      console.log("catch", error);
+      throw "again???";
+    }
+  );
+```
+
+--
+
+```
+  // catch up
+```
+
+---
+
+
 
 # Promise
 
@@ -1008,7 +1186,7 @@ Ikke ordentlig klasser, bare syntax-sukker oppå prototype
 
 ---
 
-# Arv
+# Class
 
 ```
   class User {}
